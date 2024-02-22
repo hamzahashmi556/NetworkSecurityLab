@@ -29,6 +29,7 @@ def getIndexOf(character):
 
 if __name__ == '__main__':
 
+    inputOperation = int(input("Enter 0 for encryption and 1 for decryption: "))
     inputString = input("Enter Your Message to Encrypt: ")
 
     encryptedText = ""
@@ -37,13 +38,20 @@ if __name__ == '__main__':
 
         current_index = getIndexOf(character)
 
-        if current_index < len(ascii_numbers) - 3:
-            current_index += 3
+        if inputOperation == 0:
+            if current_index < len(ascii_numbers) - 3:
+                current_index += 3
+            else:
+                current_index = 3 - (len(ascii_numbers) - current_index)
+
         else:
-            current_index = 3 - (len(ascii_numbers) - current_index)
+            if current_index > 3:
+                current_index -= 3
+            else:
+                current_index = (len(ascii_numbers) - current_index) - 3
 
         new_character = chr(ascii_numbers[current_index])
 
         encryptedText += new_character
 
-    print(f"Encrypted to {encryptedText}")
+    print(f"Your Output is {encryptedText}")
